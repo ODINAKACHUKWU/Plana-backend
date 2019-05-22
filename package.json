@@ -1,0 +1,27 @@
+{
+  "name": "plana-backend",
+  "version": "1.0.0",
+  "description": "Plana is a task management solution that helps users to manage todo lists.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node ./dist/index.js",
+    "start:dev": "NODE_ENV=development nodemon node ./server/index.js",
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && babel ./server -d ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ODINAKACHUKWU/Plana-backend.git"
+  },
+  "author": "Odinakachukwu Ezeobika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ODINAKACHUKWU/Plana-backend/issues"
+  },
+  "homepage": "https://github.com/ODINAKACHUKWU/Plana-backend#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "morgan": "^1.9.1"
+  }
+}
