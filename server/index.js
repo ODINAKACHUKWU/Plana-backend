@@ -2,12 +2,12 @@ import express from 'express';
 import logger from 'morgan';
 
 const app = express();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 app.use(logger('dev'));
 
 app.get('/', (req, res) => {
-    res.send(`<h1>Welcome to Plana</h1>
+  res.send(`<h1>Welcome to Plana</h1>
             <h3>Plana is a task management solution that helps users to manage todo lists.</h3>
             <p>For any more information please visit our
             <a href='https://github.com/ODINAKACHUKWU/Plana-backend'>
@@ -17,5 +17,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server listening on port ${port}!`);
+  console.log(`Server listening on port ${port}!`);
 });
