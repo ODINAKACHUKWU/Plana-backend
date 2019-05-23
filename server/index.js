@@ -16,6 +16,22 @@ app.get('/', (req, res) => {
             `);
 });
 
+app.get('/api/v1', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Connected to Plana v1 API',
+  });
+});
+
+app.get('*', (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Not found',
+  });
+});
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}!`);
 });
+
+export default app;
