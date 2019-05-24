@@ -8,6 +8,7 @@
     "start:dev": "NODE_ENV=development nodemon --exec babel-node ./server/index.js",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && babel ./server -d ./dist",
+    "test": "mocha dist/tests/index.spec.js --exit",
     "test:dev": "set NODE_ENV=test && npm run build && mocha dist/tests/index.spec.js --exit",
     "lint": "./node_modules/.bin/eslint"
   },
