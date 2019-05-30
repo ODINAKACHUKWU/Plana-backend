@@ -8,9 +8,9 @@
     "start:dev": "NODE_ENV=development nodemon --exec babel-node ./server/index.js",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && babel ./server -d ./dist",
-    "test": "nyc mocha dist/tests/index.spec.js --exit",
+    "test": "set NODE_ENV=test && nyc mocha dist/tests/index.spec.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test:dev": "set NODE_ENV=test && npm run build && mocha dist/tests/index.spec.js --exit",
+    "test:dev": "export NODE_ENV=test && npm run build && mocha dist/tests/index.spec.js --exit",
     "lint": "./node_modules/.bin/eslint"
   },
   "repository": {
@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/ODINAKACHUKWU/Plana-backend#readme",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.0",
+    "mongoose": "^5.5.11",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
