@@ -24,6 +24,9 @@ const options = {
   useCreateIndex: true,
 };
 
-const db = mongoose.connect(`${connectionString}`, options);
+mongoose.connect(`${connectionString}`, options, () => {
+  // eslint-disable-next-line no-console
+  console.log('Database connected!');
+});
 
-export default db;
+export default mongoose;
