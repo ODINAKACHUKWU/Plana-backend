@@ -33,7 +33,7 @@ describe('Server', () => {
   it('should return Not found', () => {
     chai
       .request(app)
-      .get('/*')
+      .get('/api/v1/unavailable')
       .end((err, res) => {
         expect(res.status).to.equal(404);
         expect(res.body.success).to.equal(false);

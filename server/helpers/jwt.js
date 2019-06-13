@@ -15,7 +15,11 @@ const getJWTConfigs = (options) => {
 
 const generateToken = (payload, configs) => {
   const { secret, ...options } = configs;
-  jwt.sign(payload, secret, options);
+  try {
+    return jwt.sign(payload, secret, options);
+  } catch (err) {
+    throw Error(err);
+  }
 };
 
 const decodeToken = (token, configs) => {

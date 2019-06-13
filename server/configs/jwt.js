@@ -13,7 +13,7 @@ const {
 } = process.env;
 
 const jwtConfigs = {
-  authenication: {
+  authentication: {
     issuer: JWT_ISSUER,
     subject: JWT_AUTH_SUBJECT,
     secret: JWT_AUTH_SECRET,

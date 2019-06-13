@@ -8,9 +8,9 @@
     "start:dev": "NODE_ENV=development nodemon --exec babel-node ./server/index.js",
     "clean": "rm -rf ./dist",
     "build": "npm run clean && babel ./server -d ./dist",
-    "test": "set NODE_ENV=test && nyc mocha dist/tests/index.spec.js --exit",
+    "test": "export NODE_ENV=test && nyc mocha --require @babel/register server/tests/index.spec.js --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "test:dev": "export NODE_ENV=test && npm run build && mocha dist/tests/index.spec.js --exit",
+    "db:drop": "babel-node ./server/database/migrations/dropCollections.js",
     "lint": "./node_modules/.bin/eslint"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "@babel/node": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
     "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
