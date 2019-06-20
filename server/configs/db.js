@@ -5,15 +5,14 @@ dotenv.config();
 
 let connectionString;
 const {
-  NODE_ENV,
   DEV_DATABASE_URL,
   PROD_DATABASE_URL,
   TEST_DATABASE_URL,
 } = process.env;
 
-if (NODE_ENV === 'test') {
+if (process.env.NODE_ENV === 'test') {
   connectionString = TEST_DATABASE_URL;
-} else if (NODE_ENV === 'production') {
+} else if (process.env.NODE_ENV === 'production') {
   connectionString = PROD_DATABASE_URL;
 } else {
   connectionString = DEV_DATABASE_URL;
@@ -24,9 +23,8 @@ const options = {
   useCreateIndex: true,
 };
 
-mongoose.connect(`${connectionString}`, options, () => {
-  // eslint-disable-next-line no-console
-  console.log('Database connected!');
-});
+mongoose.connect(connectionString, options);
 
-export default mongoose;
+const db = mongoose.connection;
+
+export default db;

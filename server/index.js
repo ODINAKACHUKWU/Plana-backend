@@ -1,12 +1,12 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
-import mongoose from './configs/db';
+import db from './configs/db';
 import baseRouter from './routes';
 
 const app = express();
-const db = mongoose.connection;
 const port = process.env.PORT || 3000;
+const isTest = process.env.NODE_ENV === 'test';
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -42,7 +42,20 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}...`);
 });
 
-// eslint-disable-next-line no-console
-db.on('error', console.error.bind(console, 'Database connection error:'));
+db.on(
+  'error',
+  // eslint-disable-next-line no-console
+  console.error.bind(
+    console,
+    'Database connection error:',
+  ),
+);
+
+if (!isTest) {
+  db.once('open', () => {
+    // eslint-disable-next-line no-console
+    console.log('Database connected...');
+  });
+}
 
 export default app;

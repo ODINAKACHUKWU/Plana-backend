@@ -7,6 +7,41 @@
         "mocha": true
     },
     "rules": {
+        "func-names": 0,
+        "no-shadow": 0,
+        "consistent-return": 0,
+        "array-callback-return": 0,
+        "arrow-parens": 0,
+        "array-type": 0,
+        "curly": 0,
+        "indent": [
+            2,
+            2
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 100
+            }
+        ],
+        "member-access": [
+            "off"
+        ],
+        "member-ordering": [
+            "off"
+        ],
+        "no-console": "warn",
+        "no-empty": 0,
+        "no-empty-interface": true,
+        "no-unused-expression": false,
+        "object-literal-sort-keys": false,
+        "one-variable-per-declaration": [
+            "off"
+        ],
+        "ordered-imports": [
+            "off"
+        ],
+        "no-extra-semi": "error"
     },
     "parser": "babel-eslint"
 }

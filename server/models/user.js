@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import uuid from 'uuid';
+import { hashPassword, comparePassword } from '../helpers/password';
 
 const { Schema } = mongoose;
 
@@ -50,6 +51,26 @@ const userSchema = new Schema({
     default: false,
   },
 });
+
+userSchema.pre('save', async function () {
+  this.password = await hashPassword(this.password);
+});
+
+userSchema.statics.checkUniqueEmail = function (email) {
+  return this.findOne({
+    email,
+  });
+};
+
+userSchema.methods.checkPasswordMatch = function (password) {
+  return comparePassword(password, this.password);
+};
+
+userSchema.methods.getUserFullName = function () {
+  const { firstName, lastName } = this;
+  return [firstName, lastName].map(name => `${name.charAt(0).toUpperCase()}${name.substr(1)}`)
+    .join(' ');
+};
 
 const User = mongoose.model('User', userSchema);
 
