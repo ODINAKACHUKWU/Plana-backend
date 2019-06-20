@@ -24,6 +24,7 @@
                 "code": 100
             }
         ],
+        "import/no-extraneous-dependencies": 0,
         "member-access": [
             "off"
         ],
@@ -32,6 +33,7 @@
         ],
         "no-console": "warn",
         "no-empty": 0,
+        "object-curly-newline": 0,
         "no-empty-interface": true,
         "no-unused-expression": false,
         "object-literal-sort-keys": false,
