@@ -3,10 +3,12 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import db from './configs/db';
 import baseRouter from './routes';
+import http from './helpers/http';
 
 const app = express();
 const port = process.env.PORT || 3000;
 const isTest = process.env.NODE_ENV === 'test';
+const { httpResponse } = http;
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,19 +25,17 @@ app.get('/', (req, res) => {
             `);
 });
 
-app.get('/api/v1', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Connected to Plana v1 API',
-  });
-});
+app.get('/api/v1', (req, res) => httpResponse(res, {
+  statusCode: 200,
+  success: true,
+  message: 'Connected to Plana v1 API',
+}));
 
-app.get('*', (req, res) => {
-  res.status(404).json({
-    success: false,
-    message: 'Not found',
-  });
-});
+app.get('*', (req, res) => httpResponse(res, {
+  statusCode: 404,
+  success: false,
+  message: 'Not found',
+}));
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
