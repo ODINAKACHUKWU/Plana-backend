@@ -1,9 +1,11 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import swaggerUi from 'swagger-ui-express';
 import db from './configs/db';
 import baseRouter from './routes';
 import http from './helpers/http';
+import swaggerDoc from '../swagger.json';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,6 +15,7 @@ const { httpResponse } = http;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use('/api/v1', baseRouter);
 
 app.get('/', (req, res) => {
